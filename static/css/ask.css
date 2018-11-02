@@ -1,0 +1,48 @@
+body {
+        font-family: "Comic Sans MS";
+    }
+    .navbar-brand {
+        font-size: 30px;
+    }
+    .cloud {
+        text-align: left;
+        font-weight: bold;
+        list-style-type: none;
+        margin-left: -33px;
+    }
+    .cloud li {
+        list-style: none;
+        display: inline;
+    }
+    .pr7 {
+        font-size: 20px;
+        opacity: 0.8;
+        color: forestgreen;
+    }
+    .pr5 {
+        font-size: 18px;
+        opacity: 0.7;
+        color: #fd7e14;
+    }
+    .pr4 {
+        font-size: 22px;
+        opacity: 0.9;
+        color: #a4002e;
+    }
+    .pr3 {
+        font-size: 15px;
+        opacity: 0.5;
+        color: black;
+    }
+    .pr2 {
+        font-size: 16px;
+        opacity: 0.7;
+        color: black;
+    }
+    .rating {
+        text-align: left;
+        list-style-type: none;
+        margin-left: -33px;
+        color: #006cd7;
+        font-size: 18px;
+    }
