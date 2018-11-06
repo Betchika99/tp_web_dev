@@ -1,0 +1,23 @@
+{% load static %}
+{% block full_answer %}
+<div class="comment">
+    <div style="display: inline-flex;">
+        <div>
+            <a href="#"><img class="avatar_comment" src="{% static "avatar.jpg" %}" alt=""></a>
+            <div style="margin-left: -16px">
+                <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-up"></i></span>
+                {{ a.rating }}
+                <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-down"></i></span>
+            </div>
+        </div>
+        <div>
+            <div class="text_main" style="margin-left: 25px;">
+                <p class="mb-auto">{{ a.text }}</p><br/>
+            </div>
+            <div class="text_main" style="margin-left: 25px; margin-top: 35px">
+                <div class="checkbox"><label style="font-size: 18px;"><input type="checkbox" value=""> Correct!</label></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

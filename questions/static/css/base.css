@@ -6,9 +6,6 @@ body {
     margin-top: 10px;
     height: 40px;
 }
-.navbar-brand {
-    font-size: 30px;
-}
 .avatar_mini {
     height: 54px;
     width: 54px;
@@ -17,8 +14,24 @@ body {
     float: left;
     max-height: 54px;
 }
+.avatar_main {
+    height: 100px;
+    width: 100px;
+    float: left;
+    border-radius: 30%;
+}
+.navbar-brand {
+    font-size: 30px;
+}
 .text {
     font-size: 16px;
+}
+.text_main {
+    margin-left: 23px;
+}
+.text_main div {
+    font-size: 24px;
+    text-decoration: underline;
 }
 .cloud {
     text-align: left;
@@ -29,6 +42,14 @@ body {
 .cloud li {
     list-style: none;
     display: inline;
+}
+.question {
+    margin-top: 6px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 15px;
+    max-height: 170px;
+    margin-bottom: 20px;
 }
 .pr7 {
     font-size: 20px;
@@ -61,4 +82,10 @@ body {
     margin-left: -33px;
     color: #006cd7;
     font-size: 18px;
+}
+.blog-sidebar {
+    margin-top: -45px;
+}
+.down_panel {
+    margin: 0px 10px 0 -13px;
 }

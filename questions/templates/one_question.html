@@ -1,0 +1,23 @@
+{% load static %}
+{% block short_question %}
+    <div class="blog-main question">
+        <div style="display: inline-flex;">
+            <a href="#"><img class="avatar_main" src="{% static "avatar.jpg" %}" alt=""></a>
+            <div class="text_main">
+                <div><a href="{% url 'questions:question' q.pk %}">{{ q.title }}</a></div>
+                <p class="mb-auto">{{ q.text }}</p>
+            </div>
+        </div>
+        <div class="down_panel">
+            <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-up"></i></span>
+            {{ q.rating }}
+            <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-down"></i></span>
+            <span class="col-md-4 answers_count"><ins><a href="{% url 'questions:question' q.pk %}">answers({{ q.answer_set.count }})</a></ins></span>
+            <span class="tags">Tags:
+                {% for t in q.tags.all %}
+                    <span class="col-md-2"><ins><a href="{% url 'questions:tag' t.title %}">{{ t.title }}</a></ins></span>
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+{% endblock %}
