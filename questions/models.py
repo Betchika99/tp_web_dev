@@ -9,7 +9,7 @@ from questions.managers import *
 
 class User(AbstractUser):
     upload = models.ImageField(upload_to='uploads/%Y/%m/%d/')
-    registration_date = models.DateTimeField(auto_now_add=True, verbose_name=u"Время регистрации")
+    registration_date = models.DateTimeField(auto_now=True, verbose_name=u"Время регистрации")
     rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
 
 
@@ -26,16 +26,25 @@ class Like(models.Model):
     LIKE = 1
     DISLIKE = -1
     vote = models.SmallIntegerField(verbose_name=u"Голос", default=LIKE)
+    # TODO: Поправить!!1!!11!!!
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        unique_together = (
+            'author',
+            'content_type',
+            'object_id',
+        )
 
 
 class Question(models.Model):
     title = models.CharField(max_length=120, verbose_name=u"Заголовок вопроса")
     text = models.TextField(verbose_name=u"Полное описание вопроса")
     author = models.ForeignKey(User, null=False, on_delete=models.CASCADE, verbose_name=u"Автор")
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name=u"Дата создания")
+    create_date = models.DateTimeField(auto_now=True, verbose_name=u"Дата создания")
     is_active = models.BooleanField(default=True, verbose_name=u"Доступность вопроса")
     tags = models.ManyToManyField(Tag, blank=True)
     rating = models.IntegerField(default=0, null=False, verbose_name=u'Рейтинг')

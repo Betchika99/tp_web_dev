@@ -8,10 +8,12 @@
                 <p class="mb-auto">{{ q.text }}</p>
             </div>
         </div>
-        <div class="down_panel">
-            <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-up"></i></span>
+        <div class="container-{{ q.pk }} down_panel">
+
+            <span class="one-question__like btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-up"></i></span>
             {{ q.rating }}
-            <span class="btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-down"></i></span>
+            <span class="one-question__dislike btn btn-link btn-lg btn-like "><i class="fa fa-thumbs-down"></i></span>
+
             <span class="col-md-4 answers_count"><ins><a href="{% url 'questions:question' q.pk %}">answers({{ q.answer_set.count }})</a></ins></span>
             <span class="tags">Tags:
                 {% for t in q.tags.all %}
@@ -20,4 +22,53 @@
             </span>
         </div>
     </div>
+
+    <script>
+        const pk = {{ q.pk }};
+
+        const container = document.querySelector(`.container-${pk}`);
+
+        const likeButton = container.querySelector('.one-question__like');
+        const dislikeButton = container.querySelector('.one-question__dislike');
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+
+        likeButton.addEventListener('click', () => {
+            const headers = new Headers();
+            headers.append('X-CSRFToken', csrftoken);
+
+            const myInit = {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    like: true,
+                    question_id: '{{ q.pk }}',
+                }),
+            };
+
+            fetch('{% url "questions:like_question" %}', myInit).then(function(response) {
+                return response.json();
+            }).then(function(result) {
+                console.log(Json.parse(result));
+            });
+        });
+        dislikeButton.addEventListener('click', () => {
+
+        });
+    </script>
 {% endblock %}

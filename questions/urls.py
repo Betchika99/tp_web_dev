@@ -11,5 +11,6 @@ urlpatterns = [
     path("login/", views.login, name="login"),
     path("signup/", views.register, name="signup"),
     path("ask/", views.ask, name="add_question"),
+    path('like/', views.like_question, name='like_question'),
 ]
 
